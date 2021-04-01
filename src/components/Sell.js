@@ -12,6 +12,7 @@ function Sell() {
     const[currencyBalance, setCurrencyBalance] = useState('')
     const[coins, setCoins] = useState()
     const[userCurrencies, setUserCurrencies] = useState('')
+    const[user, setUser]= useState('')
 
     useEffect(() => {
         const currenciesRef = database.ref('users').child(currentUser.uid).child('currencies')
@@ -28,15 +29,13 @@ function Sell() {
             try {
               let { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=20&page=1&sparkline=false')
               setCoins(data)
-            const filtererdCoins = []
-            coins.map(item => {
-                for(let currency of currencies){
-                    if(currency.symbol === item.symbol){
-                        filtererdCoins.push(item)
-                    }
-                }
-            })
-            setUserCurrencies(filtererdCoins);
+              const userRef = database.ref('users').child(currentUser.uid)
+                userRef.on('value', (snapshot)=> {
+                    const data = snapshot.val();
+                    setUser(data)
+                })
+
+                
     
             } catch (error) {
               console.log(error);
@@ -46,6 +45,7 @@ function Sell() {
     }, [])
 
     useEffect(()=>{
+
         if(currency){
             const symbolRef = database.ref('users').child(currentUser.uid).child('currencies').child(currency)
             symbolRef.on('value', (snapshot)=> {
@@ -61,6 +61,21 @@ function Sell() {
         }
         
     }, [currency])
+
+    useEffect(()=> {
+        if(currencies){
+            const filtererdCoins = []
+                coins.map(item => {
+                    for(let currency of currencies){
+                        if(currency.symbol === item.symbol){
+                            filtererdCoins.push(item)
+                        }
+                    }
+                })
+                setUserCurrencies(filtererdCoins);
+        }
+        
+    }, [coins, currencies])
     
     const handleChangeSell = e => {
         setValueSell(e.target.value)
@@ -74,50 +89,48 @@ function Sell() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        if(valueSell > currencyBalance){
+
+        if(valueSell > currencyBalance ){
             return alert('sorry you dont have that amount to sell')
-        }
+        } 
 
         try {
+            console.log(userCurrencies);
+            const currentlyPriceCurrency = userCurrencies.filter(coin => coin.symbol == currency)[0].current_price
+            const currencyName = userCurrencies.filter(coin => coin.symbol == currency)[0].name
+            const value = (parseFloat(currencyBalance - valueSell) * currentlyPriceCurrency).toFixed(2)
+            
             const userRef = database.ref('users').child(currentUser.uid)
             const currencyRef = database.ref('users').child(currentUser.uid).child('currencies').child(currency)
+
+            const updateCurrencyEquity = parseFloat(currencyBalance - valueSell).toFixed(5)
+
+            if (updateCurrencyEquity <= 0){
+                currencyRef.remove()
+            }else{
+                currencyRef.update({
+                equity: parseFloat(currencyBalance - valueSell).toFixed(5)
+            })
+            }
+
+            userRef.update({
+                money: parseFloat(user.money) + parseFloat(value)
+            })
+
+            const transaction = {
+                equity: parseFloat(valueSell).toFixed(5),
+                name: currencyName,
+                price: currentlyPriceCurrency,
+                symbol: currency,
+                transacted: Date.now(),
+                type: 'sell'
+            }
+
+            userRef.child('transactions').push(transaction)
+            
         } catch (error) {
             console.log(error.message);
         }
-    //     try {
-    //         const userRef = database.ref('users').child(currentUser.uid)
-
-    //         const currencies = coins.filter(coin => coin.id === id)
-
-    //         const price = currencies[0].current_price
-    //         const name = currencies[0].name
-    //         const symbol = currencies[0].symbol
-    //         const equitySum = parseFloat(currentlyEquity) || 0
-    //         const equity = parseFloat((valueBuy / price) + equitySum).toFixed(5)
-    //         const currency = {
-    //             name, 
-    //             equity,
-    //         }
-
-    //         const transaction = {
-    //             equity,
-    //             name,
-    //             price,
-    //             symbol,
-    //             transacted: Date.now()
-    //         }
-
-    //         userRef.child('currencies').child(symbol).set(currency)
-    //         userRef.child('transactions').push(transaction)
-
-    //         userRef.update({
-    //             money: user.money - valueBuy
-    //         })     
-
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // }
     }
 
     return (
@@ -140,7 +153,7 @@ function Sell() {
             <label>amount available</label>
             <input type="number"value={currencyBalance} disabled/>
             <label> how much do you want sell</label>
-            <input type="number" onChange={handleChangeSell}/>
+            <input  type='number' step='0.00001'  onChange={handleChangeSell}/>
             <button type="submit">Sell</button>
             </form>
         </div>

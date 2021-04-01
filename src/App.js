@@ -11,6 +11,8 @@ import ForgotPassword from './components/ForgotPassword'
 import UpdateProfile from './components/UpdateProfile'
 import Buy from './components/Buy'
 import Sell from './components/Sell'
+import Transactions from './components/Transactions'
+import Dashboard from './components/Dashboard'
 
 function App() {
   
@@ -24,6 +26,8 @@ function App() {
               <PrivateRoute path='/update-profile' component={UpdateProfile}/>
               <PrivateRoute path='/buy' component={Buy}/>
               <PrivateRoute path='/sell' component={Sell}/>
+              <PrivateRoute path='/transactions' component={Transactions}/>
+              <PrivateRoute path='/dashboard' component={Dashboard}/>
               <Route path='/signup' component={Signup}/>
               <Route path='/login' component={Login}/>
               <Route path='/forgot-password' component={ForgotPassword}/>

@@ -81,7 +81,8 @@ function Buy() {
                 name,
                 price,
                 symbol,
-                transacted: Date.now()
+                transacted: Date.now(),
+                type: 'buy'
             }
 
             userRef.child('currencies').child(symbol).set(currency)
