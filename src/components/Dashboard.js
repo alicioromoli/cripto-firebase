@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { database } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
 import axios from 'axios';
+import './Dashboard.css'
 
 function Dashboard() {
     const {currentUser} = useAuth()
@@ -60,21 +61,34 @@ function Dashboard() {
 
     
     return (
-        <div>
+        <div className="container">
+            <div className="wrapper">
             <h1>Dashboard</h1>
-            <h2>money available £ {user && user.money.toFixed(2) }</h2>
+            <div className="container__money">
+                <h2 className="container__money-font-total">TOTAL</h2>
+                <h2 className="container__money-font">£ {user && user.money.toFixed(2) }</h2>
+            </div>
+            <table className='container__dashboard'>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Equity</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
             {currencies && currencies.map(item => {
                 return (
-                    <div key={item.symbol}>
-                        <p>Symbol: {item.symbol}</p>
-                        <p>Name: {item.name}</p>
-                        <p>Equity: {item.equity}</p>
-                        <p>Price: {userCurrencies.length > 0 && userCurrencies.filter(curr => curr.symbol == item.symbol)[0].price}</p>
-                        <p>TOTAL £ {parseFloat(item.equity * userCurrencies.filter(curr => curr.symbol == item.symbol)[0].price).toFixed(2)}</p>
-                        <p>_________________________</p>
-                    </div>
+                    <tr key={item.symbol}>
+                        <td>{item.symbol}</td>
+                        <td>{item.name}</td>
+                        <td>{item.equity}</td>
+                        <td>{userCurrencies.length > 0 && userCurrencies.filter(curr => curr.symbol == item.symbol)[0].price}</td>
+                        <td>£ {parseFloat(item.equity * userCurrencies.filter(curr => curr.symbol == item.symbol)[0].price).toFixed(2)}</td>
+                    </tr>
                 )
             })}
+            </table>
+            </div>
         </div>
     )
 }

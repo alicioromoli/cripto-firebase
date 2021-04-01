@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Coin from '../components/Coin';
+import CoinSearch from '../components/CoinSearch';
+
 
 function Home() {
     const [coins, setCoins] = useState([])
@@ -33,7 +34,7 @@ function Home() {
       </div>
       { filtererdCoins.map(coin => {
         return (
-            <Coin 
+            <CoinSearch 
             key={coin.id} 
             name={coin.name} 
             image={coin.image}

@@ -28,19 +28,24 @@ function ForgotPassword() {
     }
     return (
         <div>
-            <h2>Password Reset</h2>
-            <form onSubmit={handleSubmit}>
-                {message && alert(message)}
-                <label>Email</label>
-                <input 
-                    type="email"
-                    required
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <button type="submit" disabled={loading}>Reset Password</button>
-            </form>
-            <p><Link to='login'>Log In</Link></p>
-            <p>Need an account? <Link to='/signup'>Sign up</Link></p>
+            <div className="login__container">
+                <div className="login__wrapper">
+                <form onSubmit={handleSubmit} className='login__wrapper__form'>
+                        {message && alert(message)}
+                        <label>Email</label>
+                        <input 
+                            type="email"
+                            required
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <div className='button-container' >
+                        <button type="submit" disabled={loading}>Reset Password</button>
+                        <p><Link to='login'>Log In</Link></p>
+                        <p>Need an account? <Link to='/signup'>Sign up</Link></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

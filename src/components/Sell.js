@@ -134,11 +134,11 @@ function Sell() {
     }
 
     return (
-        <div>
-             <h1 >sell cripto</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="container">
+            <div className="wrapper">
+            <form onSubmit={handleSubmit} className='exchange__form'>
             <label >What currency do you want sell?</label>
-            <select onChange={handleSelectCurrency}>
+            <select onChange={handleSelectCurrency} className='select-form' >
                 {currencies && currencies.map(currency => {
                     return (
                         <option 
@@ -156,6 +156,7 @@ function Sell() {
             <input  type='number' step='0.00001'  onChange={handleChangeSell}/>
             <button type="submit">Sell</button>
             </form>
+            </div>
         </div>
     )
 }

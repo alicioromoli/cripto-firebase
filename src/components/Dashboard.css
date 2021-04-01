@@ -1,0 +1,50 @@
+.container__money-font,
+.container__money-font-total{
+    background-color: transparent;
+    color: #fff;
+    font-size: 28px;
+}
+
+.container__money-font-total {
+    font-size: 18px;
+}
+
+.container__money{
+    background-color: #196FB1;
+    border-radius: 8px;
+    width: 22.313rem;
+    height: 6.668rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 6rem;
+}
+
+.container__dashboard {
+    margin: 4rem auto;
+    padding: 1rem;
+    border-spacing: 1rem 0;
+}
+
+.container__dashboard th {
+    background-color: #196FB1;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.container__dashboard tr {
+    border-bottom: 1px solid black;
+}
+
+.container__dashboard th, 
+.container__dashboard td{
+    padding: 1rem;
+    font-size: 1.25em;
+}
+
+.container__dashboard td{
+    padding: 1rem;
+    font-size: 1.25em;
+    font-weight: bold;
+}

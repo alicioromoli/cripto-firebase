@@ -3,11 +3,13 @@ import axios from 'axios';
 import Coin from '../components/Coin';
 import { database } from '../firebase'
 import { useAuth } from '../contexts/AuthContext'
+import SelectedCoin from '../components/SelectedCoin'
+import './Buy.css'
 
 function Buy() {
     const [coins, setCoins] = useState([])
     const [search, setSearch] = useState('')
-    const [selectedCoin, setSelectedCoin] = useState('')
+    const [selectedCoin, setSelectedCoin] = useState(false)
     const [id, setId] = useState('')
     const [valueBuy, setValueBuy] = useState(0)
     const {currentUser} = useAuth()
@@ -104,56 +106,64 @@ function Buy() {
 
 
     return (
-        <div>
-             <h1 >Search for a crypto</h1>
-            <form onSubmit={handleSubmit}>
-            <input type="text" placeholder='search' onChange={handleChange}/>
-            <label> how much do you want to buy</label>
-            <input type="number" onChange={handleChangeBuy}/>
-            <button type="submit">Buy</button>
-            </form>
-            <h1>Selected Coin</h1>
-            {id && 
-            filteredCoins.filter(item => {
-                return item.id === id
-            }).map(coin => {
-                return (
-                    <Coin 
-                    key={coin.id} 
-                    name={coin.name} 
-                    image={coin.image}
-                    symbol={coin.symbol}
-                    price={coin.current_price}
-                    volume={coin.total_volume}
-                    priceChange={coin.price_change_percentage_24h}
-                    marketcap={coin.market_cap}
-                    id={coin.id}
-                    setId={setId}
-                    setSym={setSym}
-                />
-                        )
-            })
-            }
-            <div>_________________________________</div>
-            { search &&
-                    filteredCoins.map(coin => {
-                        return (
-                            <Coin 
-                            key={coin.id} 
-                            name={coin.name} 
-                            image={coin.image}
-                            symbol={coin.symbol}
-                            price={coin.current_price}
-                            volume={coin.total_volume}
-                            priceChange={coin.price_change_percentage_24h}
-                            marketcap={coin.market_cap}
-                            id={coin.id}
-                            setId={setId}
-                            setSym={setSym}
-                        />
-                                )
-                        })
-            }
+        <div className="container">
+            <div className="wrapper">
+                <h1 >Search for a crypto</h1>
+                <form onSubmit={handleSubmit} className='exchange__form'>
+                <input type="text" placeholder='search' onChange={handleChange}/>
+                <label className='label' > how much do you want to buy</label>
+                <input type="number" placeholder='££' onChange={handleChangeBuy}/>
+                <button type="submit">Buy</button>
+                </form>
+                <h1>Selected Coin</h1>
+                <div className="coin__selected">
+                {id && 
+                filteredCoins.filter(item => {
+                    return item.id === id
+                }).map(coin => {
+                    return (
+                        <SelectedCoin 
+                        key={coin.id} 
+                        name={coin.name} 
+                        image={coin.image}
+                        symbol={coin.symbol}
+                        price={coin.current_price}
+                        volume={coin.total_volume}
+                        priceChange={coin.price_change_percentage_24h}
+                        marketcap={coin.market_cap}
+                        id={coin.id}
+                        setId={setId}
+                        setSym={setSym}
+                        
+                    />
+                            )
+                })
+                }
+                
+                </div>
+                <div className="coins__container">
+                { search &&
+                        filteredCoins.map(coin => {
+                            return (
+                                <Coin 
+                                key={coin.id} 
+                                name={coin.name} 
+                                image={coin.image}
+                                symbol={coin.symbol}
+                                price={coin.current_price}
+                                volume={coin.total_volume}
+                                priceChange={coin.price_change_percentage_24h}
+                                marketcap={coin.market_cap}
+                                id={coin.id}
+                                setId={setId}
+                                setSym={setSym}
+                                
+                            />
+                                    )
+                            })
+                }
+                </div>
+            </div>
         </div>
     )
 }

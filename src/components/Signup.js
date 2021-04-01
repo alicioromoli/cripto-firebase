@@ -41,30 +41,33 @@ function Signup() {
         setLoading(false)
     }
     return (
-        <div>
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input 
-                    type="email"
-                    required
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <label>Password</label>
-                <input 
-                    type="password"
-                    required
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <label>Repeat Password</label>
-                <input 
-                    type="password"
-                    required
-                    onChange={e => setRepeatPassword(e.target.value)}
-                />
-                <button type="submit" disabled={loading}>Sign up</button>
-            </form>
-            <p>Already have an account? <Link to='/login'>Log In</Link></p>
+        <div className="login__container">
+            <div className="login__wrapper">
+                <form onSubmit={handleSubmit} className='login__wrapper__form'>
+                    <label>Email</label>
+                    <input 
+                        type="email"
+                        required
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <label>Password</label>
+                    <input 
+                        type="password"
+                        required
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <label>Repeat Password</label>
+                    <input 
+                        type="password"
+                        required
+                        onChange={e => setRepeatPassword(e.target.value)}
+                    />
+                    <div className='button-container' >
+                        <button type="submit" disabled={loading}>Sign up</button>
+                        <p>Already have an account? <Link to='/login'>Log In</Link></p>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

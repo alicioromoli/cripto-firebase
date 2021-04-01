@@ -20,23 +20,34 @@ function Transactions() {
     }, [])
 
     return (
-        <div>
+        <div className="container">
+            <div className="wrapper">
             <h1>Transactions</h1>
+            <table className='container__dashboard'>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Equity</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Transacted</th>
+            </tr>
             {transactions && transactions.map(transaction => {
                 return (
                     <>
-                    <div key={transaction.transacted}>
-                        <p>Symbol: {transaction.symbol}</p>
-                        <p>Name: {transaction.name}</p>
-                        <p>Equity Value: {transaction.equity}</p>
-                        <p>Price: {transaction.price}</p>
-                        <p>type: {transaction.type}</p>
-                        <p>Transacted: <SimpleDateTime dateSeparator="-" format="MYD" timeSeparator=":" meridians="1">{Math.floor(transaction.transacted / 1000)}</SimpleDateTime></p>
-                    </div>
-                    <div key='73' >________________________________</div>
+                    <tr key={transaction.transacted}>
+                        <td>{transaction.symbol}</td>
+                        <td>{transaction.name}</td>
+                        <td>{transaction.equity}</td>
+                        <td>{transaction.price}</td>
+                        <td>{transaction.type}</td>
+                        <td><SimpleDateTime dateSeparator="-" format="MYD" timeSeparator=":" meridians="1">{Math.floor(transaction.transacted / 1000)}</SimpleDateTime></td>
+                    </tr>
                     </>
                 )
             })}
+            </table>
+            </div>
         </div>
     )
 }

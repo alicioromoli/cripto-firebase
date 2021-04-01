@@ -1,0 +1,76 @@
+.container {
+    margin: 0 auto;
+    max-width: 1120px;
+    text-align: center;
+}
+
+.wrapper {
+    padding: 4rem;
+}
+
+.exchange__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.exchange__form input {
+    width: 17.438rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    padding: .5rem 1rem;
+    border: 1px solid #F0ECEC;
+    margin: 1rem auto;
+}
+
+exchange__form select {
+    padding: 1rem;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.exchange__form button {
+    border-radius: 8px;
+    background-color: #196FB1;
+    color: #fff;
+    border: none;
+    width: 15rem;
+    height: 2.875rem;
+    font-size: var(--primary-font-size);
+    cursor: pointer;
+    margin: 1rem auto;
+}
+
+.exchange__form button:hover{
+    background-color: #135181;
+}
+
+.btn-selected {
+    background-color: #196FB1;
+    color: #fff;
+    border: none;
+    padding: .06rem .12rem;
+    border-radius: 8px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.coins__container {
+    margin-top: 6rem;
+}
+
+.select-form {
+    width: 17.438rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    padding: .5rem 1rem;
+    border: 1px solid #F0ECEC;
+    margin: 1rem auto;
+}
+
+.coin__selected {
+    margin-top: 1rem;
+}

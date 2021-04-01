@@ -1,7 +1,7 @@
 import React from 'react'
 import './Coin.css'
 
-function Coin({image, name, price, symbol, volume, priceChange, marketcap, setId, id, setSym}) {
+function CoinSearch({image, name, price, symbol, volume, priceChange, marketcap, setId, id, setSym}) {
     const handleSelect = () => {
         setId(id)
         setSym(symbol)
@@ -25,11 +25,10 @@ function Coin({image, name, price, symbol, volume, priceChange, marketcap, setId
                     <p className="coin-market-cap">
                         Market Cap: £{marketcap.toLocaleString()}
                     </p>
-                    <button className='btn-selected' onClick={handleSelect}>select</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Coin
+export default CoinSearch
