@@ -1,8 +1,8 @@
 # REACT AND FIREBASE CRIPTO EXCHANGE PROJECT
 
-<img width="935" alt="Screenshot 2021-04-02 at 11 02 55" src="https://user-images.githubusercontent.com/28360817/113406311-300c5900-93a3-11eb-9652-562c4833d218.png">
-<img width="930" alt="Screenshot 2021-04-02 at 11 03 26" src="https://user-images.githubusercontent.com/28360817/113406352-3ef30b80-93a3-11eb-9c42-f54f8e19e81c.png">
-<img width="924" alt="Screenshot 2021-04-02 at 11 03 43" src="https://user-images.githubusercontent.com/28360817/113406380-4adecd80-93a3-11eb-9511-7a0ff0d4aa79.png">
+<img width="435" alt="Screenshot 2021-04-02 at 11 02 55" src="https://user-images.githubusercontent.com/28360817/113406311-300c5900-93a3-11eb-9652-562c4833d218.png">
+<img width="430" alt="Screenshot 2021-04-02 at 11 03 26" src="https://user-images.githubusercontent.com/28360817/113406352-3ef30b80-93a3-11eb-9c42-f54f8e19e81c.png">
+<img width="424" alt="Screenshot 2021-04-02 at 11 03 43" src="https://user-images.githubusercontent.com/28360817/113406380-4adecd80-93a3-11eb-9511-7a0ff0d4aa79.png">
 
 This is a CRUD website that was built using Backend-as-a-Service platform(firebase) and fronend(ReactJS). The website is a Cryptocurrency Exchange that uses an API from https://api.coingecko.com/.
 
