@@ -33,7 +33,7 @@ function SelectedCoin({image, name, price, symbol, volume, priceChange, marketca
 export const styles = {
     backgroundColor: '#196FB1',
     color: '#fff',
-    borderRadius: '24px'
+    borderRadius: '2px'
 }
 
 export default SelectedCoin

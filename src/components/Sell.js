@@ -13,6 +13,7 @@ function Sell() {
     const[coins, setCoins] = useState()
     const[userCurrencies, setUserCurrencies] = useState('')
     const[user, setUser]= useState('')
+    const [success , setSuccess ] = useState(false)
 
     useEffect(() => {
         const currenciesRef = database.ref('users').child(currentUser.uid).child('currencies')
@@ -34,8 +35,6 @@ function Sell() {
                     const data = snapshot.val();
                     setUser(data)
                 })
-
-                
     
             } catch (error) {
               console.log(error);
@@ -63,7 +62,7 @@ function Sell() {
     }, [currency])
 
     useEffect(()=> {
-        if(currencies){
+        if(currencies && coins){
             const filtererdCoins = []
                 coins.map(item => {
                     for(let currency of currencies){
@@ -127,6 +126,12 @@ function Sell() {
             }
 
             userRef.child('transactions').push(transaction)
+
+            setSuccess(true)
+
+                setTimeout(()=>{
+                    setSuccess(false)
+                }, 3000)
             
         } catch (error) {
             console.log(error.message);
@@ -134,6 +139,12 @@ function Sell() {
     }
 
     return (
+        <>
+        {success &&
+            <div className='sell'>
+            Sold!
+            </div>
+        }
         <div className="container">
             <div className="wrapper">
             <form onSubmit={handleSubmit} className='exchange__form'>
@@ -158,6 +169,7 @@ function Sell() {
             </form>
             </div>
         </div>
+        </>
     )
 }
 

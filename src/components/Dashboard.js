@@ -10,6 +10,7 @@ function Dashboard() {
     const [user, setUser] = useState('')
     const[currencies, setCurrencies]= useState([])
     const[userCurrencies, setUserCurrencies] = useState('')
+    const[totalValueCurrency, setTotalValueCurrency] = useState('')
     
 
     useEffect(() => {
@@ -53,8 +54,6 @@ function Dashboard() {
                 }
             })
             setUserCurrencies(filtererdCoins)
-            
-            
         }
 
     },[coins, user])
@@ -65,7 +64,7 @@ function Dashboard() {
             <div className="wrapper">
             <h1>Dashboard</h1>
             <div className="container__money">
-                <h2 className="container__money-font-total">TOTAL</h2>
+                <h2 className="container__money-font-total">Cash available</h2>
                 <h2 className="container__money-font">£ {user && user.money.toFixed(2) }</h2>
             </div>
             <table className='container__dashboard'>

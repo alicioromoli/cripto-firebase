@@ -45,6 +45,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .exchange__form button:hover{
+    transition: .3s ease-in-out;
     background-color: #135181;
 }
 
@@ -69,8 +70,50 @@ input[type=number]::-webkit-outer-spin-button {
     padding: .5rem 1rem;
     border: 1px solid #F0ECEC;
     margin: 1rem auto;
+    cursor: pointer;
+    color: rgb(150, 149, 149);
+}
+
+.select-form:hover{
+    outline: none ;
+    border: 1px solid #a7a7a7;
 }
 
 .coin__selected {
     margin-top: 1rem;
 }
+
+.buy {
+    width: 100%;
+    height: 3.5rem;
+    background-color: #196FB1;
+    color: #fff;
+    font-size: 1.125em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    animation-name: message;
+    animation-duration: 3s;
+    animation-direction: reverse;
+}
+
+.sell {
+    width: 100%;
+    height: 3.5rem;
+    background-color: #F68140;
+    color: #fff;
+    font-size: 1.125em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    animation-name: message;
+    animation-duration: 3s;
+    animation-direction: reverse;
+}
+
+@keyframes message {
+    from {opacity: 0}
+    to {opacity: 1}
+  }

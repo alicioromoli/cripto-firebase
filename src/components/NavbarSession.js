@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import CryptocurrencyLogo from './CryptocurrencyLogo'
 import './Navbar.css'
 
-function Navbar() {
+function NavbarSession() {
     const {currentUser, logout} = useAuth()
     const [error, setError] = useState('')
     const history = useHistory()
@@ -29,11 +29,8 @@ function Navbar() {
                         <h2>CRPTO FINANCE</h2>
                     </div>
                     <div className="navbar__links">
-                        <Link to='/dashboard' className='navbar__links-link' >DASHBOARD</Link>
-                        <Link to='/' className='navbar__links-link' >CRYPTOCURRENCIES</Link>
-                        <Link to='/buy' className='navbar__links-link' >BUY</Link>
-                        <Link to='/sell' className='navbar__links-link' >SELL</Link>
-                        <Link to='/transactions' className='navbar__links-link' >HISTORY</Link>
+                        <Link to='/login' className='navbar__links-link' >SIGN IN</Link>
+                        <Link to='/signup' className='navbar__links-link' >SIGN UP</Link>
                         {currentUser && 
                         <>
                         <button onClick={handleLogout} className='navbar__links-logout-btn'>LOGOUT</button>
@@ -48,4 +45,4 @@ function Navbar() {
     )
 }
 
-export default Navbar
+export default NavbarSession

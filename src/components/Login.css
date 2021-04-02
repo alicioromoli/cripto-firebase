@@ -50,6 +50,11 @@
     cursor: pointer;
 }
 
+.login__wrapper__form button:hover {
+    background-color: #125385;
+    transition: .3s ease-in-out;
+}
+
 .password__container{
     display: flex;
     justify-content: space-between;

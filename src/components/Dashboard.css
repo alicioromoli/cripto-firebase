@@ -11,7 +11,7 @@
 
 .container__money{
     background-color: #196FB1;
-    border-radius: 8px;
+    border-radius: 2px;
     width: 22.313rem;
     height: 6.668rem;
     display: flex;
@@ -29,7 +29,7 @@
 
 .container__dashboard th {
     background-color: #196FB1;
-    border-radius: 8px;
+    border-radius: 2px;
     color: #fff;
 }
 

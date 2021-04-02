@@ -16,6 +16,7 @@ function Buy() {
     const[user, setUser]= useState('')
     const[sym, setSym] = useState('')
     const [currentlyEquity, setCurrentlyEquity] = useState('')
+    const [success , setSuccess ] = useState(false)
   
     useEffect( () => {
       const fetchData = async () => {
@@ -93,7 +94,12 @@ function Buy() {
             userRef.update({
                 money: user.money - valueBuy
             })
-          
+            
+            setSuccess(true)
+
+            setTimeout(()=>{
+                setSuccess(false)
+            }, 3000)
 
         } catch (error) {
             console.log(error.message);
@@ -106,6 +112,12 @@ function Buy() {
 
 
     return (
+        <>
+        {success &&
+            <div className='buy'>
+            Bought!
+            </div>
+        }
         <div className="container">
             <div className="wrapper">
                 <h1 >Search for a crypto</h1>
@@ -165,6 +177,7 @@ function Buy() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
